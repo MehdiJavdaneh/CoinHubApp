@@ -1,38 +1,82 @@
+//
+//  CryptoDetailView.swift
+//  CoinHubApp
+//
+//  Created by Mehdi Javdaneh on 12/12/24.
+//
+
+
 import SwiftUI
 
 struct CryptoDetailView: View {
     let crypto: CryptoCardModel
+    private func refreshCryptoDetail() {
+        
+    }
+    
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Text(crypto.name)
                     .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
                 
-                // Display price
-                Text("Price: \(crypto.price)")
+                
+                Text("\(crypto.price)")
                     .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
                     .padding(.bottom, 4)
                 
-                // Display market cap
+               
                 Text("Market Cap: \(crypto.marketCap)")
                     .font(.body)
+                    .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
                 
-                // Display volume
+                
                 Text("Volume (24h): \(crypto.volume)")
                     .font(.body)
+                    .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
                 
-                // Placeholder for chart
+                
                 VStack {
                     Text("Price Chart")
                         .font(.headline)
+                        .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
                         .padding(.bottom, 4)
                     
-                    // Placeholder chart view (you can replace this with a proper chart view)
+                    
+                    
                     RoundedRectangle(cornerRadius: 8)
                         .fill(crypto.isPositive ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
                         .frame(height: 200)
+                }
+                VStack(alignment: .leading) {
+                    Text("\(crypto.name)"+" News")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
+                        .padding(.horizontal, 121)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 16) {
+                            NewsCardView(imageName: "news_image_placeholder", headline: "XRP Price Eyes 1,350% Surge", description: "XRP Price Eyes 1,350% Surge, But This Ripple Rival Is Forecasted To Complete 19,530% Move In 7 Days")
+                            
+                            NewsCardView(imageName: "news_image_placeholder", headline: "XRP Price Eyes 1,350% Surge", description: "XRP Price Eyes 1,350% Surge, But This Ripple Rival Is Forecasted To Complete 19,530% Move In 7 Days")
+                            
+                            NewsCardView(imageName: "news_image_placeholder", headline: "XRP Price Eyes 1,350% Surge", description: "XRP Price Eyes 1,350% Surge, But This Ripple Rival Is Forecasted To Complete 19,530% Move In 7 Days")
+                            
+                        }
+                        .scrollTargetLayout()
+                    }
+                    .scrollTargetBehavior(.viewAligned)
+                    .safeAreaPadding(.horizontal, 40)
+                    .safeAreaPadding(.vertical, 10)
+                    
+                    
+                    
                 }
                 
                 Spacer()
@@ -41,7 +85,16 @@ struct CryptoDetailView: View {
         }
         .navigationTitle(crypto.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button(action: refreshCryptoDetail) {
+                Image(systemName: "arrow.clockwise")
+            }
+        }
+        .refreshable {
+            refreshCryptoDetail()
+        }
     }
+
 }
 
 struct CryptoDetailView_Previews: PreviewProvider {

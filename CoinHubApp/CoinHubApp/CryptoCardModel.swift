@@ -1,3 +1,11 @@
+//
+//  CryptoCardModel.swift
+//  CoinHubApp
+//
+//  Created by Mehdi Javdaneh on 12/12/24.
+//
+
+
 import Foundation
 
 struct CryptoCardModel: Identifiable {

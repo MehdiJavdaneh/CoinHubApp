@@ -1,3 +1,11 @@
+//
+//  TabBarView.swift
+//  CoinHubApp
+//
+//  Created by Mehdi Javdaneh on 12/12/24.
+//
+
+
 import SwiftUI
 
 struct TabBarView: View {
@@ -7,6 +15,7 @@ struct TabBarView: View {
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Discover")
+                    
                 }
 
             WatchlistView()

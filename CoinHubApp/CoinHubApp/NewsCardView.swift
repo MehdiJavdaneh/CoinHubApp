@@ -1,3 +1,11 @@
+//
+//  NewsCardView.swift
+//  CoinHubApp
+//
+//  Created by Mehdi Javdaneh on 12/12/24.
+//
+
+
 import SwiftUI
 
 struct NewsCardView: View {
@@ -7,7 +15,7 @@ struct NewsCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Image(imageName) // Placeholder for news image
+            Image(imageName) 
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 300, height: 150)
@@ -16,12 +24,16 @@ struct NewsCardView: View {
             
             Text(headline)
                 .font(.headline)
+                .foregroundColor(Color(hue: 0.701, saturation: 1.0, brightness: 0.322))
+                .padding(.leading)
             
             Text(description)
                 .font(.caption)
-                .lineLimit(2)
+                .multilineTextAlignment(.leading)
+                .lineLimit(11)
+                .padding([.leading, .bottom, .trailing])
         }
-        .frame(width: 300)
+        .frame(maxWidth: 300)
         .background(Color.white)
         .cornerRadius(16)
         .shadow(radius: 4)
